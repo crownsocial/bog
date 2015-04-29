@@ -1,0 +1,8 @@
+<h1>Creatures (<%= @user.email %> is logged in..</h1>
+<h2><%= "Hi #{@current_user.email}" %></h2>
+
+<%= link_to "Add new Creature", new_creature_path %>
+
+<% @creatures.each do |p| %>
+<li><%= link_to p.name, p %></li>
+<% end %>

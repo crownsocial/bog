@@ -1,0 +1,8 @@
+<h1>Creature detail page</h1>
+
+<h2>Name: <%= @creature.name %></h2>
+Description: <%= @creature.description %>
+<%= link_to "Edit this creature", edit_creature_path, :class => "btn btn-primary" %>
+<%= link_to "Delete this creature", creature_path(@creature), :method => :delete, :class => "btn btn-danger" %>
+
+<!-- #  link_to "Edit", [:edit,book]  -->
