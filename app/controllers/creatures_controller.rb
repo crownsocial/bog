@@ -23,19 +23,20 @@ class CreaturesController < ApplicationController
   end
 
   def show
-    @creature = Creature.find(params[:id])
+    @creature = Creature.find_by_slug(params[:id])
   end
 
   def about
   end
 
   def edit
-    @creature = Creature.find(params[:id])
+    @creature = Creature.find_by_slug(params[:id])
     @tags = Tag.all
   end
 
   def update
-    @creature = Creature.update(params[:id], creature_params)
+    @creature = Creature.find_by_slug(params[:id])
+    @creature.update(creature_params)
     @creature.tags.clear
     tags = params[:creature][:tag_ids]
     tags.each do |tag_id|
@@ -53,7 +54,7 @@ class CreaturesController < ApplicationController
   private
 
   def creature_params
-    params.require(:creature).permit(:name,:description)
+    params.require(:creature).permit(:name,:description,:slug)
   end
 
 end

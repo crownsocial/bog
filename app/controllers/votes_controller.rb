@@ -1,0 +1,1 @@
+class Vote2sController < ApplicationController

@@ -4,5 +4,5 @@
 <%= link_to "Add new Creature", new_creature_path %>
 
 <% @creatures.each do |p| %>
-<li><%= link_to p.name, p %></li>
+<li><%= link_to p.name, "creatures/#{p.slug}" %></li>
 <% end %>

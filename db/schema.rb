@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150429222434) do
+ActiveRecord::Schema.define(version: 20150430204453) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150429222434) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "user_id"
+    t.string   "slug"
   end
 
   add_index "creatures", ["user_id"], name: "index_creatures_on_user_id"
@@ -55,5 +56,28 @@ ActiveRecord::Schema.define(version: 20150429222434) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
+
+  create_table "vote2s", force: :cascade do |t|
+    t.integer  "value"
+    t.integer  "user_id"
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "vote2s", ["user_id"], name: "index_vote2s_on_user_id"
+  add_index "vote2s", ["votable_type", "votable_id"], name: "index_vote2s_on_votable_type_and_votable_id"
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "value"
+    t.integer  "user_id"
+    t.integer  "votable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id"
+  add_index "votes", ["votable_id"], name: "index_votes_on_votable_id"
 
 end

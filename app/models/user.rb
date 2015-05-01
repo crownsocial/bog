@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
 
   has_secure_password
   has_many :creatures
+  has_many :vote2s, as: :votable
+  has_many :ratings, class_name: 'Vote2'
   validates :email,
     presence: true,
     uniqueness: {case_sensitive: false}
